@@ -1,6 +1,6 @@
 FROM node:9.2.0
-RUN yum update \
-    && yum install -y nginx
+RUN apt-get update \
+    && apt-get install -y nginx
 WORKDIR /app
 COPY . /app/
 EXPOSE 80
