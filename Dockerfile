@@ -9,4 +9,4 @@ RUN  npm install \
      && npm run build \
      && cp -r build/* /var/www/html
     #  && rm -rf /app
-CMD ["nginx","-c","/nginx.conf","-g","daemon off;"]
+CMD ["nginx","-c","/etc/nginx/nginx.conf","-g","daemon off;"]
