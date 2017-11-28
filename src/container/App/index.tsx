@@ -1,8 +1,8 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom';
 
-import Main from '../Main';
-import About from '../About';
+import Main from '../Main/Loadable';
+import About from '../About/Loadable';
 
 class App extends PureComponent {
   render(): ReactNode {
