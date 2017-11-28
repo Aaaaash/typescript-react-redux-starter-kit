@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "@blueprintjs/core": "^1.33.0",
-    "@types/prop-types": "^15.5.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.1.1",
-    "react-scripts-ts": "2.8.0"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "react-scripts-ts": "2.8.0",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -18,9 +21,16 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/history": "^4.6.2",
     "@types/jest": "^21.1.8",
     "@types/node": "^8.0.53",
+    "@types/react-redux": "^5.0.14",
+    "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.25",
-    "@types/react-dom": "^16.0.3"
+    "@types/react-dom": "^16.0.3",
+    "@types/react-router-dom": "^4.2.3",
+    "@types/react-router-redux": "^5.0.10",
+    "@types/redux": "^3.6.0",
+    "history": "^4.7.2"
   }
 }
