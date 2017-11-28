@@ -7,13 +7,17 @@ import {
   compose,
   createStore,
 } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
 
 import createReducer from './reducers';
 import { LifeStore } from './types';
+import createRootEpics from './epics';
 
 export default (initialState = {}, history: History): LifeStore<object>  => {
+  const epicsMiddleware = createEpicMiddleware(createRootEpics());
   const middlewares: Middleware[] = [
     routerMiddleware(history),
+    epicsMiddleware,
   ];
 
   const enhaners: GenericStoreEnhancer[] = [
