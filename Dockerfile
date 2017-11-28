@@ -1,9 +1,9 @@
-FROM node:9.2.0
+FROM nginx:stable-alpine
 RUN apt-get update \
-    && apt-get install -y nginx \
+    && apt-get install -y nodejs \
     && apt-get install -y vim \
-    && rm -rf /etc/nginx/nginx.conf
-COPY conf/nginx.conf /etc/nginx
+    && rm -rf /etc/nginx/conf.d
+COPY conf /etc/nginx
 WORKDIR /app
 COPY . /app/
 EXPOSE 80
