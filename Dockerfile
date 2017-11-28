@@ -2,8 +2,9 @@ FROM node:9.2.0
 RUN apt-get update \
     && apt-get install -y nginx \
     && apt-get install -y vim \
-    && rm -rf /etc/nginx/cond.d
-COPY conf/cond.d /etc/nginx
+    && rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d
+COPY conf/conf.d /etc/nginx
+COPY conf/nginx.conf /etc/nginx
 WORKDIR /app
 COPY . /app/
 EXPOSE 80
