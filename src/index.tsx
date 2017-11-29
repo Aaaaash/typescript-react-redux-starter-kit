@@ -18,11 +18,8 @@ const initialState: object = {};
 
 const store: LifeStore<object> = createStore(initialState, history);
 
-store.injectedReducers = {};
-
 if (module.hot) {
   module.hot.accept('./reducers', () => {
-    debugger;
     store.replaceReducer(createReducer(store.injectedReducers));
   });
 }

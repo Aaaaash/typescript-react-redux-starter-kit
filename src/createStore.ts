@@ -7,14 +7,29 @@ import {
   compose,
   createStore,
 } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
+import 'rxjs';
+import { createEpicMiddleware, ActionsObservable } from 'redux-observable';
 
 import createReducer from './reducers';
-import { LifeStore } from './types';
+import { LifeStore, Action } from './types';
 import createRootEpics from './epics';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+const epics = new BehaviorSubject(createRootEpics());
+const rootEpic: any = (action$: ActionsObservable<Action>, store: LifeStore<object>) =>
+  epics.mergeMap(epic =>
+    epic(action$, store)
+  );
+const dependencies = {};
+const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
+
+export function injectEpics(newEpics: any, newDependencies?: any): void {
+  Object.assign(dependencies, newDependencies);
+
+  newEpics.map((epic: ActionsObservable<Action>) => epics.next(epic));
+}
 
 export default (initialState = {}, history: History): LifeStore<object>  => {
-  const epicsMiddleware = createEpicMiddleware(createRootEpics());
   const middlewares: Middleware[] = [
     routerMiddleware(history),
     epicsMiddleware,
@@ -36,5 +51,7 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
     initialState,
     composeEnhancers(...enhaners)
   );
+
+  store.injectedReducers = {};
   return store;
 }

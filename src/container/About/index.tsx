@@ -4,12 +4,16 @@ import { compose } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
+import aboutEpics from './epics';
+import { injectEpics } from '../../createStore';
 
 class About extends PureComponent {
   render(): ReactNode {
     return <div>this is about page</div>;
   }
 }
+
+injectEpics(aboutEpics);
 
 const mapStateToProps = (state: any) => {
   return {

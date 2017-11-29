@@ -1,8 +1,7 @@
 import { combineEpics } from 'redux-observable';
-import { isArray } from 'lodash';
 
-export default function createRootEpics(injectedEpics?: any): any {
-  if(!isArray) throw new Error('injectedEpics must be a array');
+import appEpics from './container/App/epics';
 
-  return combineEpics(...injectedEpics);
+export default function createRootEpics(): any {
+  return combineEpics(...appEpics);
 }

@@ -2,6 +2,7 @@ import { Dispatch, Reducer, Unsubscribe } from 'redux';
 
 export interface LifeStore<S> {
   injectedReducers?: object;
+  injectedEpic?: any;
   dispatch: Dispatch<S>;
   getState(): S;
   replaceReducer(nextReducer: Reducer<S>): void;

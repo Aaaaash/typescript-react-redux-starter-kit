@@ -6,12 +6,14 @@ import About from '../About/Loadable';
 
 class App extends PureComponent {
   render(): ReactNode {
-    return (<div>
-      <Switch>
-        <Route exact path="/" component={Main} />
-        <Route path="/about" component={About} />
-      </Switch>
-    </div>);
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </div>
+    );
   }
 }
 
