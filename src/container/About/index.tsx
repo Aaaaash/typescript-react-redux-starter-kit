@@ -6,8 +6,18 @@ import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import aboutEpics from './epics';
 import { injectEpics } from '../../createStore';
+import {
+  someAction,
+} from './action';
 
-class About extends PureComponent {
+interface Props {
+  asyncRequest: (name: string) => void;
+}
+class About extends PureComponent<Props> {
+  componentDidMount() {
+    this.props.asyncRequest('sakuraash');
+  }
+
   render(): ReactNode {
     return <div>this is about page</div>;
   }
@@ -22,6 +32,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
+  asyncRequest: (name: string) => dispatch(someAction(name))
 });
 
 function mergePropss(stateProps: Object, dispatchProps: Object, ownProps: Object) {
