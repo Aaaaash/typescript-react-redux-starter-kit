@@ -5,6 +5,8 @@ import { compose } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
+import mainEpics from './epics';
+import { injectEpics } from '../../createStore';
 
 class Main extends PureComponent {
   render(): ReactNode {
@@ -16,6 +18,8 @@ class Main extends PureComponent {
     );
   }
 }
+
+injectEpics('main', mainEpics);
 
 const mapStateToProps = (state: any) => ({
 });

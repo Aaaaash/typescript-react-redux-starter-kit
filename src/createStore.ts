@@ -23,10 +23,11 @@ const rootEpic: any = (action$: ActionsObservable<Action>, store: LifeStore<obje
 const dependencies = {};
 const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
 
-export function injectEpics(newEpics: any, newDependencies?: any): void {
+export function injectEpics(key: string, newEpics: any, newDependencies?: any): void {
   Object.assign(dependencies, newDependencies);
 
   newEpics.map((epic: ActionsObservable<Action>) => epics.next(epic));
+  console.log(`${key} page Epic is loaded!`);
 }
 
 export default (initialState = {}, history: History): LifeStore<object>  => {

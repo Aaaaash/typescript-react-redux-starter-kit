@@ -23,7 +23,7 @@ class About extends PureComponent<Props> {
   }
 }
 
-injectEpics(aboutEpics);
+injectEpics('about', aboutEpics);
 
 const mapStateToProps = (state: any) => {
   return {
