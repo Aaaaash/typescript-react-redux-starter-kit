@@ -1,12 +1,13 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import mainEpics from './epics';
 import { injectEpics } from '../../createStore';
+import { LifeStore } from '../../types';
 
 class Main extends PureComponent {
   render(): ReactNode {
@@ -24,7 +25,7 @@ injectEpics('main', mainEpics);
 const mapStateToProps = (state: any) => ({
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<object>) => ({
 });
 
 function mergePropss(stateProps: Object, dispatchProps: Object, ownProps: Object) {

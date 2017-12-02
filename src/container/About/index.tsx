@@ -1,10 +1,11 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import aboutEpics from './epics';
+import { LifeStore } from '../../types';
 import { injectEpics } from '../../createStore';
 import {
   someAction,
@@ -31,7 +32,7 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<object>) => ({
   asyncRequest: (name: string) => dispatch(someAction(name))
 });
 
