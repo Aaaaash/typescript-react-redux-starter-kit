@@ -57,9 +57,9 @@
   },
   "devDependencies": {
     "@types/history": "^4.6.2",
+    "@types/immutable": "^3.8.7",
     "@types/invariant": "^2.2.29",
     "@types/jest": "^21.1.8",
-    "@types/immutable": "^3.8.7",
     "@types/lodash": "^4.14.85",
     "@types/node": "^8.0.53",
     "@types/prop-types": "^15.5.2",

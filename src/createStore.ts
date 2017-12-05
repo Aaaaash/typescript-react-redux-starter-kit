@@ -2,10 +2,10 @@ import { routerMiddleware }  from 'react-router-redux';
 import { History } from 'history';
 import {
   applyMiddleware,
-  Middleware,
   GenericStoreEnhancer,
   compose,
   createStore,
+  Middleware,
 } from 'redux';
 import 'rxjs';
 import { createEpicMiddleware, ActionsObservable } from 'redux-observable';
@@ -41,8 +41,8 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
   ];
 
   const composeEnhancers: Function =
-    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    (window as any).devToolsExtension
+    ? (window as any).devToolsExtension({
       shouldHotReload: false,
     })
     : compose;

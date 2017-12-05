@@ -5,7 +5,6 @@ import { compose, Dispatch } from 'redux';
 import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import aboutEpics from './epics';
-import { LifeStore } from '../../types';
 import { injectEpics } from '../../createStore';
 import {
   someAction,

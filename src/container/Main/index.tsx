@@ -7,7 +7,6 @@ import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import mainEpics from './epics';
 import { injectEpics } from '../../createStore';
-import { LifeStore } from '../../types';
 
 class Main extends PureComponent {
   render(): ReactNode {
