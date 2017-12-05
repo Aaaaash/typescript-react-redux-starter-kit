@@ -1,7 +1,7 @@
-import { combineEpics } from 'redux-observable';
-
+import { combineEpics, Epic } from 'redux-observable';
 import appEpics from './container/App/epics';
+import { Action, LifeStore } from './types';
 
-export default function createRootEpics(): any {
+export default function createRootEpics(): Epic<Action, LifeStore<object>, object> {
   return combineEpics(...appEpics);
 }

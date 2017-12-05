@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
@@ -9,7 +9,7 @@ const routeInitialState = fromJS({
   location: null,
 });
 
-function routeReducer(state = routeInitialState, action: Action) {
+function routeReducer(state: Map<{}, {}> = routeInitialState, action: Action) {
   switch (action.type) {
     case LOCATION_CHANGE:
       return { ...state, ...action.payload };

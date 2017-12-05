@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './reducerInjectors';
-import { InjectedReducerParams } from '../types';
+import { InjectReducerParams } from '../types';
 
-export default ({ key, reducer }: InjectedReducerParams) => (WrappedComponent: ComponentType<object>) => {
+export default ({ key, reducer }: InjectReducerParams) => (WrappedComponent: ComponentType<object>) => {
   class ReducerInjector extends React.PureComponent {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
@@ -13,13 +13,13 @@ export default ({ key, reducer }: InjectedReducerParams) => (WrappedComponent: C
     };
     static displayName = `withReducer(${(WrappedComponent.displayName || WrappedComponent.name || 'Component')})`;
 
+    injectors = getInjectors(this.context.store);
+
     componentWillMount() {
       const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);
     }
-
-    injectors = getInjectors(this.context.store);
 
     render() {
       return <WrappedComponent {...this.props} />;

@@ -1,4 +1,4 @@
-import { Dispatch, Reducer, Unsubscribe } from 'redux';
+import { Dispatch, Reducer, Unsubscribe, ReducersMapObject, Store } from 'redux';
 
 export interface LifeStore<S> {
   injectedReducers?: any;
@@ -13,7 +13,7 @@ export interface Action {
   [propName: string]: any;
 }
 
-export interface InjectedReducerParams {
+export interface InjectReducerParams {
   key: string;
   reducer: (state: any, action: Action) => any;
 }

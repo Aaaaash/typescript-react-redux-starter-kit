@@ -17,14 +17,14 @@ import createRootEpics from './epics';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const epics = new BehaviorSubject(createRootEpics());
-const rootEpic: any = (action$: ActionsObservable<Action>, store: LifeStore<object>) =>
+const rootEpic: Epic<Action, {}, {}> = (action$: ActionsObservable<Action>, store: LifeStore<any>) =>
   epics.mergeMap(epic =>
-    epic(action$, store)
+    epic(action$, store, {})
   );
 const dependencies = {};
 const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
 
-export function injectEpics(key: string, newEpics: Epic<Action, LifeStore<object>>[], newDependencies?: any): void {
+export function injectEpics(key: string, newEpics: Epic<Action, LifeStore<object>>[], newDependencies?: {}): void {
   Object.assign(dependencies, newDependencies);
 
   newEpics.map((epic: Epic<Action, LifeStore<object>>) => epics.next(epic));
@@ -48,7 +48,7 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
     })
     : compose;
 
-  const store: LifeStore<object> = createStore(
+  const store: LifeStore<{}> = createStore(
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhaners)
@@ -56,4 +56,4 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
 
   store.injectedReducers = {};
   return store;
-}
+};
