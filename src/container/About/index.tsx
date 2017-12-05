@@ -1,5 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { compose, Dispatch } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
@@ -10,9 +11,13 @@ import { injectEpics } from '../../createStore';
 import {
   someAction,
 } from './action';
+import {
+  selectMyGithubInfo,
+} from './selector';
 
 interface Props {
   asyncRequest: (name: string) => void;
+  myInfo: Object;
 }
 
 class About extends PureComponent<Props> {
@@ -21,17 +26,17 @@ class About extends PureComponent<Props> {
   }
 
   render(): ReactNode {
+    const { myInfo } = this.props;
+    console.log(myInfo);
     return <div>this is about page</div>;
   }
 }
 
 injectEpics('about', aboutEpics);
 
-const mapStateToProps = (state: ReduxState) => {
-  return {
-    myInfo: state.about.myInfo,
-  }
-};
+const mapStateToProps = (state: ReduxState) => createStructuredSelector({
+  myInfo: selectMyGithubInfo(),
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<object>) => ({
   asyncRequest: (name: string) => dispatch(someAction(name))

@@ -1,5 +1,6 @@
 import { routerMiddleware }  from 'react-router-redux';
 import { History } from 'history';
+import { fromJS } from 'immutable';
 import {
   applyMiddleware,
   GenericStoreEnhancer,
@@ -49,7 +50,7 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
 
   const store: LifeStore<object> = createStore(
     createReducer(),
-    initialState,
+    fromJS(initialState),
     composeEnhancers(...enhaners)
   );
 
