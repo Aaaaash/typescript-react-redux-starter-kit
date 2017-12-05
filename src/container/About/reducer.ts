@@ -1,14 +1,13 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import { Action } from '../../types';
 
-const initialState = fromJS({
+const initialState: Map<object, object> = fromJS({
   myInfo: {}
 });
 
-export default function aboutReducer(state = initialState, action: Action) {
+export default function aboutReducer(state: Map<object, object> = initialState, action: Action) {
   switch (action.type) {
     case 'FETCH_USER_FULFILLED':
-      console.log(action.data);
       return { ...state, myInfo: action.data };
     default:
       return state;

@@ -5,7 +5,7 @@ export function someAction(name: string) {
   }
 }
 
-export function getSuccess(data: any) {
+export function getSuccess(data: object) {
   return {
     type: 'FETCH_USER_FULFILLED',
     data,

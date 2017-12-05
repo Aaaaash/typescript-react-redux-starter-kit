@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { compose, Dispatch } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
+import { ReduxState } from '../../types';
 import reducer from './reducer';
 import aboutEpics from './epics';
 import { injectEpics } from '../../createStore';
@@ -13,6 +14,7 @@ import {
 interface Props {
   asyncRequest: (name: string) => void;
 }
+
 class About extends PureComponent<Props> {
   componentDidMount() {
     this.props.asyncRequest('sakuraash');
@@ -25,7 +27,7 @@ class About extends PureComponent<Props> {
 
 injectEpics('about', aboutEpics);
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: ReduxState) => {
   return {
     myInfo: state.about.myInfo,
   }

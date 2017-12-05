@@ -8,7 +8,7 @@ import {
   Middleware,
 } from 'redux';
 import 'rxjs';
-import { createEpicMiddleware, ActionsObservable } from 'redux-observable';
+import { createEpicMiddleware, ActionsObservable, Epic } from 'redux-observable';
 
 import createReducer from './reducers';
 import { LifeStore, Action } from './types';
@@ -23,10 +23,10 @@ const rootEpic: any = (action$: ActionsObservable<Action>, store: LifeStore<obje
 const dependencies = {};
 const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
 
-export function injectEpics(key: string, newEpics: any, newDependencies?: any): void {
+export function injectEpics(key: string, newEpics: Epic<Action, LifeStore<object>>[], newDependencies?: any): void {
   Object.assign(dependencies, newDependencies);
 
-  newEpics.map((epic: ActionsObservable<Action>) => epics.next(epic));
+  newEpics.map((epic: Epic<Action, LifeStore<object>>) => epics.next(epic));
   console.log(`${key} page Epic is loaded!`);
 }
 
@@ -41,8 +41,8 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
   ];
 
   const composeEnhancers: Function =
-    (window as any).devToolsExtension
-    ? (window as any).devToolsExtension({
+    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
       shouldHotReload: false,
     })
     : compose;

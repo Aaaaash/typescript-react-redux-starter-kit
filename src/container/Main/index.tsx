@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose, Dispatch } from 'redux';
 
 import injectReducer from '../../utils/injectReducer';
+import { ReduxState } from '../../types';
 import reducer from './reducer';
 import mainEpics from './epics';
 import { injectEpics } from '../../createStore';
@@ -21,7 +22,7 @@ class Main extends PureComponent {
 
 injectEpics('main', mainEpics);
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: ReduxState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<object>) => ({

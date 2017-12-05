@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './reducerInjectors';
+import { InjectedReducerParams } from '../types';
 
-export default ({ key, reducer }: any) => (WrappedComponent: any) => {
+export default ({ key, reducer }: InjectedReducerParams) => (WrappedComponent: ComponentType<object>) => {
   class ReducerInjector extends React.PureComponent {
     static WrappedComponent = WrappedComponent;
     static contextTypes = {
