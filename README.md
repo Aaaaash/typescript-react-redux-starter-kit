@@ -1,5 +1,7 @@
 ## Features
 
+[![](https://badge.juejin.im/entry/5a28fce4f265da430b7b21d2/likes.svg?style=flat-square)](https://juejin.im/entry/5a28fce4f265da430b7b21d2/detail)
+
 ### [Typescript](https://github.com/Microsoft/TypeScript)
 
   强类型的JavaScript，提高编码、debug效率
