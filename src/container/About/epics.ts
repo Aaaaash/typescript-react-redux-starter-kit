@@ -7,12 +7,12 @@ import {
   getSuccess,
 } from './action';
 
-const pingEpic: Epic<Action, LifeStore<object>> = (action$: ActionsObservable<Action>) =>
+const pingEpic: Epic<Action, LifeStore> = (action$: ActionsObservable<Action>) =>
   action$.filter((action: Action) => action.type === 'PING')
     .delay(1000)
     .mapTo({ type: 'PONG' });
 
-const fetchUserEpic: Epic<Action, LifeStore<object>> = (action$: ActionsObservable<Action>) =>
+const fetchUserEpic: Epic<Action, LifeStore> = (action$: ActionsObservable<Action>) =>
   action$.ofType('GET_SOME_DATA')
     .mergeMap((action: Action) =>
       ajax.getJSON(`https://api.github.com/users/${action.name}`)

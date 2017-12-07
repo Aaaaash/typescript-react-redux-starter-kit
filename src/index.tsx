@@ -16,7 +16,7 @@ import { LifeStore } from './types/';
 const history: History = createHistory();
 const initialState: object = {};
 
-const store: LifeStore<object> = createStore(initialState, history);
+const store: LifeStore = createStore(initialState, history);
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {

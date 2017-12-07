@@ -1,11 +1,11 @@
 import { Dispatch, Reducer, Unsubscribe, ReducersMapObject, Store } from 'redux';
 
-export interface LifeStore<S> {
+export interface LifeStore extends Store<{}> {
   injectedReducers?: any;
-  dispatch: Dispatch<S>;
-  getState(): S;
-  replaceReducer(nextReducer: Reducer<S>): void;
-  subscribe(listener: () => void): Unsubscribe;
+  // dispatch: Dispatch<S>;
+  // getState(): S;
+  // replaceReducer(nextReducer: Reducer<S>): void;
+  // subscribe(listener: () => void): Unsubscribe;
 }
 
 export interface Action {

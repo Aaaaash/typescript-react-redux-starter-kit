@@ -4,7 +4,7 @@ import { Reducer } from 'redux';
 import createReducer from '../reducers';
 import { LifeStore } from '../types';
 
-export function injectReducerFactory(store: LifeStore<object>) {
+export function injectReducerFactory(store: LifeStore) {
   return function injectReducer(key: string, reducer: Reducer<object>) {
     invariant(
       isString(key) && !isEmpty(key) && isFunction(reducer),
@@ -17,7 +17,7 @@ export function injectReducerFactory(store: LifeStore<object>) {
   };
 }
 
-export default function getInjectors(store: LifeStore<object>) {
+export default function getInjectors(store: LifeStore) {
   return {
     injectReducer: injectReducerFactory(store),
   };

@@ -7,6 +7,7 @@ import {
   compose,
   createStore,
   Middleware,
+  MiddlewareAPI,
 } from 'redux';
 import 'rxjs';
 import { createEpicMiddleware, ActionsObservable, Epic } from 'redux-observable';
@@ -17,21 +18,21 @@ import createRootEpics from './epics';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const epics = new BehaviorSubject(createRootEpics());
-const rootEpic: Epic<Action, {}, {}> = (action$: ActionsObservable<Action>, store: LifeStore<any>) =>
+const rootEpic: Epic<Action, {}, {}> = (action$: ActionsObservable<Action>, store: MiddlewareAPI<LifeStore>) =>
   epics.mergeMap(epic =>
     epic(action$, store, {})
   );
 const dependencies = {};
 const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
 
-export function injectEpics(key: string, newEpics: Epic<Action, LifeStore<object>>[], newDependencies?: {}): void {
+export function injectEpics(key: string, newEpics: Epic<Action, LifeStore>[], newDependencies?: {}): void {
   Object.assign(dependencies, newDependencies);
 
-  newEpics.map((epic: Epic<Action, LifeStore<object>>) => epics.next(epic));
+  newEpics.map((epic: Epic<Action, LifeStore>) => epics.next(epic));
   console.log(`${key} page Epic is loaded!`);
 }
 
-export default (initialState = {}, history: History): LifeStore<object>  => {
+export default (initialState = {}, history: History): LifeStore  => {
   const middlewares: Middleware[] = [
     routerMiddleware(history),
     epicsMiddleware,
@@ -48,7 +49,7 @@ export default (initialState = {}, history: History): LifeStore<object>  => {
     })
     : compose;
 
-  const store: LifeStore<{}> = createStore(
+  const store: LifeStore = createStore(
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhaners)
