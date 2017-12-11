@@ -7,7 +7,7 @@ import { History } from 'history';
 
 import App from './container/App';
 import './index.css';
-import createStore from './createStore';
+import configureStore from './configureStore';
 import createReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -16,7 +16,7 @@ import { LifeStore } from './types/';
 const history: History = createHistory();
 const initialState: object = {};
 
-const store: LifeStore = createStore(initialState, history);
+const store: LifeStore = configureStore(initialState, history);
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {

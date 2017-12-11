@@ -1,11 +1,8 @@
 import { Dispatch, Reducer, Unsubscribe, ReducersMapObject, Store } from 'redux';
+import { RouterState } from 'react-router-redux';
 
 export interface LifeStore extends Store<{}> {
   injectedReducers?: any;
-  // dispatch: Dispatch<S>;
-  // getState(): S;
-  // replaceReducer(nextReducer: Reducer<S>): void;
-  // subscribe(listener: () => void): Unsubscribe;
 }
 
 export interface Action {
@@ -19,7 +16,9 @@ export interface InjectReducerParams {
 }
 
 export interface ReduxState {
-  route: object;
+  route: RouterState;
   global: object;
   [propName: string]: any;
 }
+
+export type State = Map<{}, {}>;

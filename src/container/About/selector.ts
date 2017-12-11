@@ -6,7 +6,7 @@ const selectAbout = (state: ReduxState) => state.get('about');
 
 const selectMyGithubInfo = () => createSelector(
   selectAbout,
-  (state) => state.get('myInfo').toJS()
+  (state: ReduxState) => state.get('myInfo').toJS()
 );
 
 export {

@@ -1,9 +1,13 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS } from 'immutable';
+import { Reducer } from 'redux';
 
-import { Action } from '../../types';
+import { Action, State } from '../../types';
 
 const initialState = fromJS({});
 
-export default function globalReducer(state: Map<{}, {}> = initialState, action: Action) {
+const reducer: Reducer<State> =
+  (state: State = initialState, action: Action) => {
   return state;
 }
+
+export default reducer;

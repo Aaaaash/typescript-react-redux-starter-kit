@@ -7,7 +7,7 @@ import injectReducer from '../../utils/injectReducer';
 import { ReduxState } from '../../types';
 import reducer from './reducer';
 import aboutEpics from './epics';
-import { injectEpics } from '../../createStore';
+import { injectEpics } from '../../configureStore';
 import {
   someAction,
 } from './action';
