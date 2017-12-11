@@ -1,4 +1,4 @@
-import { ActionsObservable, Epic } from 'redux-observable';
+import { ActionsObservable, Epic, combineEpics } from 'redux-observable';
 import { Action, LifeStore } from '../../types';
 import 'rxjs';
 
@@ -7,6 +7,6 @@ const pingEpic: Epic<Action, LifeStore> = (action$: ActionsObservable<Action>) =
     .delay(1000)
     .mapTo({ type: 'PONG' });
 
-export default [
-  pingEpic,
-];
+export default combineEpics(
+  pingEpic
+);

@@ -25,10 +25,11 @@ const rootEpic: Epic<Action, {}, {}> = (action$: ActionsObservable<Action>, stor
 const dependencies = {};
 const epicsMiddleware = createEpicMiddleware(rootEpic, { dependencies });
 
-export function injectEpics(key: string, newEpics: Epic<Action, LifeStore>[], newDependencies?: {}): void {
+export function injectEpics(key: string, newEpics: Epic<Action, LifeStore>, newDependencies?: {}): void {
   Object.assign(dependencies, newDependencies);
 
-  newEpics.map((epic: Epic<Action, LifeStore>) => epics.next(epic));
+  epics.next(newEpics);
+  // newEpics.map((epic: Epic<Action, LifeStore>) => epics.next(epic));
   console.log(`${key} page Epic is loaded!`);
 }
 

@@ -1,4 +1,4 @@
-import { ActionsObservable, Epic } from 'redux-observable';
+import { ActionsObservable, Epic, combineEpics } from 'redux-observable';
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { Action, LifeStore } from '../../types';
 import 'rxjs';
@@ -19,7 +19,7 @@ const fetchUserEpic: Epic<Action, LifeStore> = (action$: ActionsObservable<Actio
         .map(response => getSuccess(response))
     );
 
-export default [
+export default combineEpics(
   pingEpic,
   fetchUserEpic
-];
+);
