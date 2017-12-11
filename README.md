@@ -26,7 +26,11 @@
 
 ### container
 ```javascript
-/*----------------actions.ts------------------*/
+
+/**
+ * action.ts
+ * */
+
 export function someAction(name: string) {
   return {
     type: 'GET_SOME_DATA',
@@ -34,20 +38,27 @@ export function someAction(name: string) {
   }
 }
 
-/*----------------reducer.ts------------------*/
-const initialState = {
+/**
+ * reducer.ts
+ * */
+const initialState = fromJS({
   myInfo: {}
-}
-export default function aboutReducer(state = initialState, action: any) {
+});
+
+const reducer: Reducer<State> =
+  (state: State = initialState, action: Action) => {
   switch (action.type) {
-    case 'GET_SOME_DATA':
-      return { ...state, myInfo: action.data };
+    case 'FETCH_USER_FULFILLED':
+      return state.set('myInfo', fromJS(action.data));
     default:
       return state;
   }
 }
 
-/*----------------epics.ts------------------*/
+/**
+ * epic.ts
+ * */
+
 // must be imported
 import 'rxjs';
 
@@ -68,9 +79,10 @@ export default [
   fetchUserEpic
 ];
 
-/*----------------index.tsx------------------*/
+/*
+ * index.tsx
+ * */
 
-// Type declaration
 interface Props {
   asyncRequest: (name: string) => void;
 }
